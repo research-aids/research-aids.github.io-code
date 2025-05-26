@@ -12,3 +12,14 @@ research-aids.github.io will automatically pull files and scripts to run from he
    - sync-fork.yml
    - ci.yml -- part of Just-the-Docs
    - pages.yml -- part of Just-the-Docs
+
+
+## sync-fork
+
+Does the following:
+
+ - syncs `research-aids/research-aids.github.io` with its parent `colonial-heritage/research-guides-dev` using the `--force` strategy, which overrides all commits in this repo (that conflict with the parent's commits)
+ - copies the files in this repo over to the repository it was run in and distributes them accordingly; **including**
+   -  **the sync-fork script itself**, thus ensuring it will continue to run
+   -  the Just-the-Docs action YAML files -> does that affect deployment?
+ -  
