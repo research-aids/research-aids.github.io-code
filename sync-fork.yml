@@ -20,10 +20,17 @@ jobs:
         run: |
           git clone https://github.com/research-aids/research-aids.github.io-code.git ${{ github.workspace }}
           cp --force ${{ github.workspace }}/research-aids.github.io-code/README.md .
-          cp --force ${{ github.workspace }}/research-aids.github.io-code/workflows/*.yml ${{ github.workspace }}/.github/workflows
-          cp --force ${{ github.workspace }}/research-aids.github.io-code/scripts/* ${{ github.workspace }}/scripts
+          cp --force ${{ github.workspace }}/research-aids.github.io-code/sync-fork.yml ${{ github.workspace }}/.github/workflows
+          
+          cp -r --force ${{ github.workspace }}/research-aids.github.io-code/docs ${{ github.workspace }}
+          python ${{ github.workspace }}/docs/setup_just-the-docs.py
+          
+          cp --force ${{ github.workspace }}/research-aids.github.io-code/clean_up.py ${{ github.workspace }}
+          python ${{ github.workspace }}/clean_up.py
           rm -rf ${{ github.workspace }}/research-aids.github.io-code
-          python ${{ github.workspace }}/scripts/clean_up.py
+          rm ${{ github.workspace }}/clean_up.py
+          
+          
        - name: "pushing generated files back to repo" 
          run: |
           if git diff --exit-code; then
