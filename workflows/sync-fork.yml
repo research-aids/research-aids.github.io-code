@@ -18,6 +18,21 @@ jobs:
           BRANCH_NAME: ${{ github.ref_name }}
       - name: "clone research-aids/research-aids.github.io-code and add contents to research-aids.github.io"
         run: |
-          git clone https://github.com/research-aids/research-aids.github.io-code.git
-          cp --force research-aids.github.io-code/
+          git clone https://github.com/research-aids/research-aids.github.io-code.git ${{ github.workspace }}
+          cp --force ${{ github.workspace }}/research-aids.github.io-code/README.md .
+          cp --force ${{ github.workspace }}/research-aids.github.io-code/workflows/*.yml ${{ github.workspace }}/.github/workflows
+          cp --force ${{ github.workspace }}/research-aids.github.io-code/scripts/* ${{ github.workspace }}/scripts
+          rm -rf ${{ github.workspace }}/research-aids.github.io-code
+          python ${{ github.workspace }}/scripts/clean_up.py
+       - name: "pushing generated files back to repo" 
+         run: |
+          if git diff --exit-code; then
+            echo "NOTHING TO COMMIT!!!"
+          else
+            git config user.email "valevogelmann@gmail.com"
+            git config user.name "valevo"
+            git add .
+            git commit -m "automated commit by GitHub Action defined in scripts/yaml_to_json.yml"
+            git push
+          fi
              
