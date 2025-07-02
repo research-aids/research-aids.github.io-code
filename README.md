@@ -6,12 +6,16 @@ research-aids.github.io will automatically pull files and scripts to run from he
 
 ## contents
 
- - script which cleans up (and restructures) the fork after syncing
- - scipt which adds buttons to the markdown (./EXPORTS/MD) versions of the RAs
- - GitHub action files:
-   - sync-fork.yml
-   - ci.yml -- part of Just-the-Docs
-   - pages.yml -- part of Just-the-Docs
+ - `docs/`, the folder which contains the Just-the-Docs setup:
+   - `Gemfile` & `Gemfile.lock` (part of Just-the-Docs)
+   - `_config.yml` (part of Just-the-Docs, _edited_)
+   - `setup_just-the-docs.py` (script that sets up the Just-the-Docs template for the repo by distrubting files
+ - ~~scipt which adds buttons to the markdown (./EXPORTS/MD) versions of the RAs~~ -> this happens already in the exports script in research-guides-dev
+ - GitHub Action files:
+   - `sync-fork.yml` (cleans up (and restructures) the fork after syncing with --force)
+   - `pages.yml` (part of Just-the-Docs, builds and deploys the page; _edited_)
+   - `ci.yml` (part of Just-the-Docs)
+   
 
 
 ## sync-fork
