@@ -28,8 +28,8 @@ jobs:
           
           cp --force ${{ github.workspace }}/research-aids.github.io-code/clean_up.py ${{ github.workspace }}
           python ${{ github.workspace }}/clean_up.py
-       - name: "pushing generated files back to repo" 
-         run: |
+      - name: pushing generated files back to repo 
+        run: |
           if git diff --exit-code; then
             echo "NOTHING TO COMMIT!!!"
           else
@@ -39,4 +39,3 @@ jobs:
             git commit -m "automated commit by GitHub Action defined in scripts/yaml_to_json.yml"
             git push
           fi
-             
