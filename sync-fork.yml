@@ -23,14 +23,11 @@ jobs:
           cp --force ${{ github.workspace }}/research-aids.github.io-code/sync-fork.yml ${{ github.workspace }}/.github/workflows
           
           cp -r --force ${{ github.workspace }}/research-aids.github.io-code/docs ${{ github.workspace }}
-          python ${{ github.workspace }}/docs/setup_just-the-docs.py
+          cp --force ${{ github.workspace }}/docs/pages.yml ${{ github.workspace }}/.github/workflows
+          cp --force ${{ github.workspace }}/docs/ci.yml ${{ github.workspace }}/.github/workflows
           
           cp --force ${{ github.workspace }}/research-aids.github.io-code/clean_up.py ${{ github.workspace }}
           python ${{ github.workspace }}/clean_up.py
-          rm -rf ${{ github.workspace }}/research-aids.github.io-code
-          rm ${{ github.workspace }}/clean_up.py
-          
-          
        - name: "pushing generated files back to repo" 
          run: |
           if git diff --exit-code; then
