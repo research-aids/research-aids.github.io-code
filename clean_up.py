@@ -12,15 +12,17 @@ import shutil
 ### REMOVE UNCESSARY FILES FROM PARENT
 #############################################
 
-
-Path.unlink("directory_tree.md")
-Path.unlink("README.md")
-Path.unlink("handbook.md")
+try:
+    Path.unlink("directory_tree.md")
+    Path.unlink("README.md")
+    Path.unlink("handbook.md")
 
 shutil.rmtree("forKinsukAndSjors")
 shutil.rmtree("offline")
 # shutil.rmtree("review")
 
+except FileNotFoundError:
+    print("seems like files were already gone...")
 
 
 #############################################
