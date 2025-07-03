@@ -19,7 +19,7 @@ Path.unlink("handbook.md")
 
 shutil.rmtree("forKinsukAndSjors")
 shutil.rmtree("offline")
-shutil.rmtree("review")
+# shutil.rmtree("review")
 
 
 
@@ -30,13 +30,13 @@ shutil.rmtree("review")
 MD_DIR = "./EXPORTS/WEBSITE"
 DOCS_DIR = "./docs"
 
-os.makedirs(DOCS_DIR)
+# os.makedirs(DOCS_DIR)
 
-md_files = glob(MD_DIR + "/*/Dutch/*.yml") + glob(MD_DIR + "/*/English/*.yml")
+md_files = glob(MD_DIR + "/*/Dutch/*.md") + glob(MD_DIR + "/*/English/*.md")
 
 for f in md_files:
     # with open(f) as handle:
-        
+    print(f"copying {f} to {f.replace(MD_DIR, DOCS_DIR)}")
     shutil.copy2(f, f.replace(MD_DIR, DOCS_DIR))
 
 
