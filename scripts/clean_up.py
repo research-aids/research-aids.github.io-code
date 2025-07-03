@@ -19,7 +19,7 @@ Path.unlink("handbook.md")
 
 shutil.rmtree("forKinsukAndSjors")
 shutil.rmtree("offline")
-shutil.rmtree("review")
+# shutil.rmtree("review")
 
 
 
