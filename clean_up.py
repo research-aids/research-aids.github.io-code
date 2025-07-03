@@ -17,9 +17,9 @@ try:
     Path.unlink("README.md")
     Path.unlink("handbook.md")
 
-shutil.rmtree("forKinsukAndSjors")
-shutil.rmtree("offline")
-# shutil.rmtree("review")
+    shutil.rmtree("forKinsukAndSjors")
+    shutil.rmtree("offline")
+    # shutil.rmtree("review")
 
 except FileNotFoundError:
     print("seems like files were already gone...")
