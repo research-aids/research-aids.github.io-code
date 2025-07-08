@@ -59,12 +59,16 @@ for f in md_files:
 ### 
 #############################################
 
+print(glob("*"))
+print(glob(DOCS_DIR+"/*")
+
+
 from datetime import datetime
 index = ""
-with open(DOCS_DIR + "/index.html", "r") as handle:
+with open(DOCS_DIR + "/index.md", "r") as handle:
     index += handle.read()
 
-with open(DOCS_DIR + "/index.html", "r") as handle:
+with open(DOCS_DIR + "/index.md", "r") as handle:
     index += "\n\n" + f"current version from {datetime.now().strftime()}"
 
     handle.write(index)
