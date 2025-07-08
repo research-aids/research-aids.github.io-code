@@ -63,7 +63,7 @@ jobs:
             git config user.name "valevo"
             git add .
             git commit -m "automated commit by GitHub Action defined in https://github.com/research-aids/research-aids.github.io-code/sync-fork.yml"
-            git push origin HEAD:refs/heads/master --force
+            git push origin HEAD:refs/heads/main --force
           fi
       - name: Push changes
         uses: ad-m/github-push-action@master
