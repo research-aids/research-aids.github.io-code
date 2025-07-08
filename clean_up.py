@@ -60,7 +60,7 @@ for f in md_files:
 #############################################
 
 print(glob("*"))
-print(glob(DOCS_DIR+"/*")
+print(glob(DOCS_DIR+"/*"))
 
 
 from datetime import datetime
