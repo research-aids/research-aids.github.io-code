@@ -34,7 +34,8 @@ jobs:
           BRANCH_NAME: ${{ github.ref_name }}
       - name: List files in the repository
         run: |
-          ls ${{ github.workspace }}/*
+          ls ${{ github.workspace }}/EXPORTS/WEBSITE/*
+          ls ${{ github.workspace }}/EXPORTS/docs/*
       - name: "clone research-aids/research-aids.github.io-code and add contents to research-aids.github.io"
         run: |
           git clone https://github.com/research-aids/research-aids.github.io-code.git
