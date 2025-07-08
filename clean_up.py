@@ -44,8 +44,6 @@ for f in niveau_files:
 
 
 
-
-
 md_files = glob(MD_DIR + "/*/Dutch/*.md") + glob(MD_DIR + "/*/English/*.md")
 
 for f in md_files:
