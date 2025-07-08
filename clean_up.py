@@ -68,7 +68,7 @@ index = ""
 with open(DOCS_DIR + "/index.md", "r") as handle:
     index += handle.read()
 
-with open(DOCS_DIR + "/index.md", "r") as handle:
+with open(DOCS_DIR + "/index.md", "w") as handle:
     index += "\n\n" + f"current version from {datetime.now()}"#.strftime("%Y-%m-%d")}"
 
     handle.write(index)
