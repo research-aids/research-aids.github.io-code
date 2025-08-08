@@ -1,5 +1,5 @@
 name: sync-fork
-run-name: "Syncs the fork and restructures it, every hour."
+run-name: "Syncs the fork and restructures it, every 6 hours."
 on:
   schedule:
     - cron: '0 */6 * * *'
