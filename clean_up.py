@@ -62,9 +62,10 @@ copy_to_docs("./EXPORTS/WEBSITE/review", "./docs/review")
 ### ADD DATE TO INDEX.HTML
 #############################################
 
-print(glob("*"))
-print(glob(DOCS_DIR+"/*"))
+# print(glob("*"))
+# print(glob(DOCS_DIR+"/*"))
 
+DOCS_DIR = "./docs"
 
 from datetime import datetime
 index = ""
