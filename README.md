@@ -53,4 +53,14 @@ _(when the website  repo is created)_
  1. go to the Settings tab -> Pages -> Build and deployment, then select "Source: GitHub Actions" (as mentioned in https://github.com/just-the-docs/just-the-docs-template/blob/main/README.md#publishing-your-site-on-github-pages)
  2. add `sync-fork.yml` from this repo to the repo's `.github/workflows` folder -> this creates the corresponding action which runs on a schedule
 
- - 
+
+
+## TODOs
+
+**website behaviour**
+ - links should open in new tab (HTML link target="_blank" behaviour)
+ - Dutch version is main version (and only item in navigation bar); Dutch version contains link to English version
+ - download buttons for PDF and DOCX are hideous
+ - make colonial-heritage/research-aids/REAMDE.md landing page of website (i.e. add to research-aids.github.io/docs/ and add front-matter
+ - add colonial-heritage/research-aids/handbook.md to website
+ - add colonial-heritage/research-aids/LICENSE to website
