@@ -57,7 +57,10 @@ _(when the website  repo is created)_
 
 ## TODOs
 
-**website behaviour**
+**exporting**
+ - "Related Aids" table
+
+**website content**
  - links should open in new tab (HTML link target="_blank" behaviour)
  - Dutch version is main version (and only item in navigation bar); Dutch version contains link to English version
  - download buttons for PDF and DOCX are hideous
