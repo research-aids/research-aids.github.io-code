@@ -58,7 +58,9 @@ _(when the website  repo is created)_
 ## TODOs
 
 **exporting**
- - "Related Aids" table
+ - "Related Aids" table -- ".md" extension instead of ".yml"
+  
+
 
 **website content**
  - links should open in new tab (HTML link target="_blank" behaviour)
@@ -67,3 +69,4 @@ _(when the website  repo is created)_
  - make colonial-heritage/research-aids/REAMDE.md landing page of website (i.e. add to research-aids.github.io/docs/ and add front-matter
  - add colonial-heritage/research-aids/handbook.md to website
  - add colonial-heritage/research-aids/LICENSE to website
+ - titles in navbar are in English -> replace with actual title
