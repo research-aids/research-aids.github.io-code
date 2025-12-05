@@ -44,16 +44,16 @@ nav_exclude: {exclude_from_navbar}
 def related_aids_table(own_level, related_aids_dict):
     pass
     
-def parse_filename(orig_path, has_path=False):
+def parse_filename(orig_path, extension, has_path=False):
     path_part = r'.+\/' if has_path else ''
-    m = re.search(fr'{path_part}(.*)_[0-9]+\.yml', orig_path)
+    m = re.search(fr'{path_part}(.*)_[0-9]+\.{extension}', orig_path)
     if m:
         return m.group(1)
     raise ValueError(f"{orig_path} couldn't be parsed!")
 
 def parse_filepath(fp):
     *pref, published, level, lang, fname = fp.split(os.path.sep)
-    return published, level, lang, parse_filename(fname)
+    return published, level, lang, parse_filename(fname, extension="md")
 
 def get_export_path(orig_path, make_dirs=True):
     published, level, lang, name = parse_filepath(orig_path)
