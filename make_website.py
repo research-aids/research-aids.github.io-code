@@ -102,7 +102,7 @@ def website(f):
 
     english_version = ""
     if lang == "Dutch":
-        english_version = f"{MD_DIR}/{published}/{level}/English/{name}"
+        english_version = f"{MD_DIR}/{published}/{level}/English/{name}.md"
         if os.path.exists(english_version):
             english_version = f"see also [the English version]({WEBSITE_BASE_URL}/{published}/{level}/English/{name}.html)"
             english_version += "\n\n"
