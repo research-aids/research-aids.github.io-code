@@ -11,7 +11,7 @@ from datetime import datetime
 
 MD_DIR = "./EXPORTS/MD"
 WEBSITE_DIR = "./docs"
-
+https://raw.githubusercontent.com/colonial-heritage/research-aids/refs/heads/main/EXPORTS/PDF/published/niveau0/Dutch/TopLevel.pdf
 GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/colonial-heritage/research-aids/refs/heads/main/"
 WEBSITE_BASE_URL = "https://research-aids.github.io/"
 
@@ -102,8 +102,8 @@ def website(f):
             english_version += "\n\n"
     
     
-    pdf_path = f"EXPORTS/PDF/{published}/{level}/{lang}/{name}"
-    docx_path = f"EXPORTS/DOCX/{published}/{level}/{lang}/{name}"
+    pdf_path = f"EXPORTS/PDF/{published}/{level}/{lang}/{name}.pdf"
+    docx_path = f"EXPORTS/DOCX/{published}/{level}/{lang}/{name}.docx"
     
     pdf_button = f"[Download PDF]({GITHUB_RAW_BASE_URL + pdf_path}){{: .btn .btn-blue }}"
     docx_button = f"[Download DOCX]({GITHUB_RAW_BASE_URL + docx_path}){{: .btn .btn-blue }}"
@@ -120,8 +120,8 @@ def website(f):
 
 if __name__ == "__main__":
     for cur_dir in ("published", "review"):
-        eng = glob(f"{cur_dir}/*/English/*.yml")
-        dutch = glob(f"{cur_dir}/*/Dutch/*.yml")
+        eng = glob(f"{MD_DIR}/{cur_dir}/*/English/*.yml")
+        dutch = glob(f"{MD_DIR}/{cur_dir}/*/Dutch/*.yml")
         # top = glob(f"{BASE_DIR}/TopLevel/*.yml")
     
         yaml_files = sorted(dutch + eng)
@@ -129,4 +129,7 @@ if __name__ == "__main__":
             level_base(f)
             website(f)
 
+
+
+https://github.com/colonial-heritage/research-aids/raw/refs/heads/main/EXPORTS/PDF/published/niveau0/Dutch/TopLevel.pdf
     
