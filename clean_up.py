@@ -33,7 +33,7 @@ for f in glob("*", include_hidden=False):
 
 
 ### remove workflows from colonial-heritage/research-aids
-keep = ("sync-fork.yml", "pages.yml", "ci.yml")
+keep = (".github/workflows/sync-fork.yml", ".github/workflows/pages.yml", ".github/workflows/ci.yml")
 for f in glob(".github/workflows/*"):
     if not f in keep:
         if os.path.isdir(f):
