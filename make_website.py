@@ -11,7 +11,7 @@ from datetime import datetime
 
 MD_DIR = "./EXPORTS/MD"
 WEBSITE_DIR = "./docs"
-https://raw.githubusercontent.com/colonial-heritage/research-aids/refs/heads/main/EXPORTS/PDF/published/niveau0/Dutch/TopLevel.pdf
+
 GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/colonial-heritage/research-aids/refs/heads/main/"
 WEBSITE_BASE_URL = "https://research-aids.github.io/"
 
@@ -128,8 +128,3 @@ if __name__ == "__main__":
         for f in yaml_files:
             level_base(f)
             website(f)
-
-
-
-https://github.com/colonial-heritage/research-aids/raw/refs/heads/main/EXPORTS/PDF/published/niveau0/Dutch/TopLevel.pdf
-    
