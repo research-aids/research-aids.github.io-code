@@ -80,6 +80,7 @@ has_toc: true
 parent: {published.capitalize()}
 ---
 This is level {level[-1]} of the RAs.
+{{: .no_toc }}
 """
         md.write(level_md)
         # return level_md
@@ -111,7 +112,7 @@ def website(f):
     website_content = front_matter(published, name, level, lang) + "\n\n" +\
                                 english_version +\
                                 pdf_button + "\t\t\t" + docx_button +\
-                                "\n\n" + md_content
+                                "\n\n" + md_content + "SOMETHING STUPID"
 
     with open(md_name, "w") as web_handle:
         web_handle.write(website_content)
