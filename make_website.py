@@ -121,6 +121,8 @@ def website(f):
 
 
 if __name__ == "__main__":
+    print("GLOB: ", glob("*"), flush=True)
+    print(glob(f"{MD_DIR}/published/*/English/*.yml"), flush=True)
     for cur_dir in ("published", "review"):
         eng = glob(f"{MD_DIR}/{cur_dir}/*/English/*.yml")
         dutch = glob(f"{MD_DIR}/{cur_dir}/*/Dutch/*.yml")
