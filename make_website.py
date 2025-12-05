@@ -111,10 +111,11 @@ def website(f):
     
     website_content = front_matter(published, name, level, lang) + "\n\n" +\
                                 english_version +\
-                                pdf_button + "\t\t\t" + docx_button +\
+                                pdf_button + "&emsp;" + docx_button +\
                                 "\n\n" + md_content + "SOMETHING STUPID"
 
     with open(md_name, "w") as web_handle:
+        print(f"writing website to file: {md_name}", flush=True)
         web_handle.write(website_content)
     # return website_content
 
