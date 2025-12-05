@@ -125,7 +125,7 @@ if __name__ == "__main__":
         # top = glob(f"{BASE_DIR}/TopLevel/*.yml")
     
         yaml_files = sorted(dutch + eng)
-        for f in tqdm(yaml_files):
+        for f in yaml_files:
             level_base(f)
             website(f)
 
