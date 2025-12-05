@@ -92,20 +92,33 @@ This is level {level[-1]} of the RAs.
 
 
 
+def get_title(md_content):
+    title_lines = [(l.replace("# ", ""), i) for i, l in enumerate(md_content.splitlines()) if l.strip().startswith("# ")]
+    return title_lines[0]
+
 
 
 def website(f):
     with open(f) as handle:
         md_content = handle.read()
+
+    title, title_ind = get_title(md_content)
         
     md_name, (published, level, lang, name) = get_export_path(f)
 
-    english_version = ""
     if lang == "Dutch":
         english_version = f"{MD_DIR}/{published}/{level}/English/{name}.md"
         if os.path.exists(english_version):
-            english_version = f"see also [the English version]({WEBSITE_BASE_URL}/{published}/{level}/English/{name}.html)"
-            english_version += "\n\n"
+            lang_link = f"[English version]({WEBSITE_BASE_URL}/{published}/{level}/English/{name}.html){{: .btn .btn-blue }}"
+            lang_link += "\n\n"
+    elif lang == "English":
+        dutch_version = f"{MD_DIR}/{published}/{level}/Dutch/{name}.md"
+        if os.path.exists(dutch_version):
+            lang_link = f"[Nederlandse versie]({WEBSITE_BASE_URL}/{published}/{level}/Dutch/{name}.html){{: .btn .btn-blue }}"
+            lang_link += "\n\n"
+    else:
+        lang_link = ""
+
     
     
     pdf_path = f"EXPORTS/PDF/{published}/{level}/{lang}/{name}.pdf"
@@ -114,9 +127,9 @@ def website(f):
     pdf_button = f"[Download PDF]({GITHUB_RAW_BASE_URL + pdf_path}){{: .btn .btn-blue }}"
     docx_button = f"[Download DOCX]({GITHUB_RAW_BASE_URL + docx_path}){{: .btn .btn-blue }}"
     
-    website_content = front_matter(published, name, level, lang) + "\n\n" +\
-                                english_version +\
-                                pdf_button + "&emsp;" + docx_button +\
+    website_content = front_matter(published, title, level, lang) + "\n\n" +\
+                                lang_link +\
+                                pdf_button + "        " + docx_button +\
                                 "\n\n" + md_content + "SOMETHING STUPID"
 
     with open(md_name, "w") as web_handle:
