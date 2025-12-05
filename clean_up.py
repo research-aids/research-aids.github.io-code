@@ -19,7 +19,8 @@ keep = ("published",
         "handbook.md",
         "README.md",
         "LICENSE",
-        "docs")
+        "docs",
+       "EXPORTS")
 
 
 for f in glob("*", include_hidden=False):
