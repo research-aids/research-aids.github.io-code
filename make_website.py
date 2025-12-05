@@ -81,7 +81,7 @@ def level_base(f):
 layout: default
 title: {level}
 nav_enabled: true
-has_toc: true
+has_toc: false
 parent: {published.capitalize()}
 ---
 This is level {level[-1]} of the RAs.
