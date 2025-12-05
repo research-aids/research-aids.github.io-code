@@ -106,6 +106,7 @@ def website(f):
         
     md_name, (published, level, lang, name) = get_export_path(f)
 
+    lang_link = ""
     if lang == "Dutch":
         english_version = f"{MD_DIR}/{published}/{level}/English/{name}.md"
         if os.path.exists(english_version):
@@ -116,8 +117,6 @@ def website(f):
         if os.path.exists(dutch_version):
             lang_link = f"[Nederlandse versie]({WEBSITE_BASE_URL}/{published}/{level}/Dutch/{name}.html){{: .btn .btn-blue }}"
             lang_link += "\n\n"
-    else:
-        lang_link = ""
 
     
     
