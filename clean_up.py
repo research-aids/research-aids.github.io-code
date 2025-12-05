@@ -33,12 +33,23 @@ for f in glob("*", include_hidden=False):
 
 
 ### remove workflows from colonial-heritage/research-aids
-try:
-    Path.unlink(".github/workflows/check_yaml.yml")
-    Path.unlink(".github/workflows/yaml2json.yml")
-    Path.unlink(".github/workflows/yaml_export.yml")
-except FileNotFoundError:
-    print("workflow files from colonial-heritage/research-aids have apparently already been removed")
+keep = ("sync-fork.yml", "pages.yml", "ci.yml")
+for f in glob(".github/workflows/*"):
+    if not f in keep:
+        if os.path.isdir(f):
+            shutil.rmtree(f)
+        else:
+            Path.unlink(f)
+    else:
+        print(f"keeping {f}")
+
+
+# try:
+#     Path.unlink(".github/workflows/check_yaml.yml")
+#     Path.unlink(".github/workflows/yaml2json.yml")
+#     Path.unlink(".github/workflows/yaml_export.yaml")
+# except FileNotFoundError:
+#     print("workflow files from colonial-heritage/research-aids have apparently already been removed")
 
 
 
