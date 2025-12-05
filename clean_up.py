@@ -22,7 +22,7 @@ keep = ("published",
         "docs")
 
 
-for f in glob("*"):
+for f in glob("*", include_hidden=False):
     if not f in keep:
         if os.path.isdir(f):
             shutil.rmtree(f)
@@ -31,6 +31,11 @@ for f in glob("*"):
     else:
         print(f"keeping {f}")
 
+
+### remove workflows from colonial-heritage/research-aids
+Path.unlink(".github/workflows/check_yaml.yml")
+Path.unlink(".github/workflows/yaml2json.yml")
+Path.unlink(".github/workflows/yaml_export.yml")
 
 
 
