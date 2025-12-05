@@ -10,60 +10,51 @@ import shutil
 
 #############################################
 ### REMOVE UNCESSARY FILES FROM PARENT
+### WARNING: REMOVES EVERTHING *EXCEPT* EXPLICITLY WANTED FOLDERS/FILES
 #############################################
 
-try:
-    Path.unlink("directory_tree.md")
-    Path.unlink("README.md")
-    Path.unlink("handbook.md")
 
-    shutil.rmtree("forKinsukAndSjors")
-    shutil.rmtree("offline")
-    # shutil.rmtree("review")
-    shutil.rmtree("scripts")
-
-except FileNotFoundError:
-    print("seems like files were already gone...")
+keep = ("published",
+        "review",
+        "handbook.md",
+        "README.md",
+        "LICENSE",
+        "docs")
 
 
-try:
-    Path.unlink(".github/workflows/check_yaml.yml")
-    Path.unlink(".github/workflows/yaml2json.yml")
-    Path.unlink(".github/workflows/yaml_export.yaml")
-except FileNotFoundError:
-    print("phew, workflow files already gone")
+for f in glob("*"):
+    if not f in keep:
+        if os.path.isdir(f):
+            shutil.rmtree(f)
+        else:
+            Path.unlink(f)
+    else:
+        print(f"keeping {f}")
 
 
-#############################################
-### MOVE MARKDOWN FILES TO DOCS
-#############################################
-
-def copy_to_docs(MD_DIR, DOCS_DIR):
-    # os.makedirs(DOCS_DIR)
-    niveau_files = glob(MD_DIR + "/*/*.md")
-    for f in niveau_files:
-        # with open(f) as handle:
-        dest_fpath = f.replace(MD_DIR, DOCS_DIR)
-        print(f"copying {f} to {dest_fpath}")
-    
-        os.makedirs(os.path.dirname(dest_fpath), exist_ok=True)
-        shutil.copy2(f, dest_fpath)
-    
-    
-    
-    md_files = glob(MD_DIR + "/*/Dutch/*.md") + glob(MD_DIR + "/*/English/*.md")
-    
-    for f in md_files:
-        # with open(f) as handle:
-        dest_fpath = f.replace(MD_DIR, DOCS_DIR)
-        print(f"copying {f} to {dest_fpath}")
-    
-        os.makedirs(os.path.dirname(dest_fpath), exist_ok=True)
-        shutil.copy2(f, dest_fpath)
 
 
-copy_to_docs("./EXPORTS/WEBSITE/published", "./docs/published")
-copy_to_docs("./EXPORTS/WEBSITE/review", "./docs/review")
+# try:
+#     Path.unlink("directory_tree.md")
+#     Path.unlink("README.md")
+#     Path.unlink("handbook.md")
+
+#     shutil.rmtree("offline")
+#     # shutil.rmtree("review")
+#     shutil.rmtree("scripts")
+
+# except FileNotFoundError:
+#     print("seems like files were already gone...")
+
+
+# try:
+#     Path.unlink(".github/workflows/check_yaml.yml")
+#     Path.unlink(".github/workflows/yaml2json.yml")
+#     Path.unlink(".github/workflows/yaml_export.yaml")
+# except FileNotFoundError:
+#     print("phew, workflow files already gone")
+
+
 
 #############################################
 ### ADD DATE TO INDEX.HTML
