@@ -130,11 +130,12 @@ if __name__ == "__main__":
     
     print(glob(f"{MD_DIR}/published/*/English/*.md"), flush=True)
     for cur_dir in ("published", "review"):
-        eng = glob(f"{MD_DIR}/{cur_dir}/*/English/*.md")
-        dutch = glob(f"{MD_DIR}/{cur_dir}/*/Dutch/*.md")
+        eng = sorted(glob(f"{MD_DIR}/{cur_dir}/*/English/*.md"))
+        dutch = sorted(glob(f"{MD_DIR}/{cur_dir}/*/Dutch/*.md"))
         # top = glob(f"{BASE_DIR}/TopLevel/*.yml")
-    
-        yaml_files = sorted(dutch + eng)
+
+        # ORDER IMPORTANT!!! (English first)
+        yaml_files = eng + dutch
         for f in yaml_files:
             level_base(f)
             website(f)
