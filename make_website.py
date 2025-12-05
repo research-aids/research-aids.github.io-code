@@ -122,12 +122,11 @@ def website(f):
 
 if __name__ == "__main__":
     print("GLOB: ", glob("*"), flush=True)
-    print("GLOB: ", glob(f"{MD_DIR}"), flush=True)
     
-    print(glob(f"{MD_DIR}/published/*/English/*.yml"), flush=True)
+    print(glob(f"{MD_DIR}/published/*/English/*.md"), flush=True)
     for cur_dir in ("published", "review"):
-        eng = glob(f"{MD_DIR}/{cur_dir}/*/English/*.yml")
-        dutch = glob(f"{MD_DIR}/{cur_dir}/*/Dutch/*.yml")
+        eng = glob(f"{MD_DIR}/{cur_dir}/*/English/*.md")
+        dutch = glob(f"{MD_DIR}/{cur_dir}/*/Dutch/*.md")
         # top = glob(f"{BASE_DIR}/TopLevel/*.yml")
     
         yaml_files = sorted(dutch + eng)
