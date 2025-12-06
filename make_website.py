@@ -15,6 +15,9 @@ WEBSITE_DIR = "./docs"
 GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/colonial-heritage/research-aids/refs/heads/main/"
 WEBSITE_BASE_URL = "https://research-aids.github.io/"
 
+
+BUTTON = '{: .btn .btn-outline target="_blank"}'
+
 # def download_button(published, level, language, name, extension):
     # link_text = dict(pdf="Download PDF", docx="Download DOCX")
     # link_text = link_text[extension.lower()]
@@ -106,16 +109,16 @@ def website(f):
         
     md_name, (published, level, lang, name) = get_export_path(f)
 
-    lang_link = ""
+    lang_link =
     if lang == "Dutch":
         english_version = f"{MD_DIR}/{published}/{level}/English/{name}.md"
         if os.path.exists(english_version):
-            lang_link = f"[English version]({WEBSITE_BASE_URL}/{published}/{level}/English/{name}.html){{: .btn .btn-blue }}"
+            lang_link = f"[English version]({WEBSITE_BASE_URL}/{published}/{level}/English/{name}.html){BUTTON}"
             lang_link += "\n\n"
     elif lang == "English":
         dutch_version = f"{MD_DIR}/{published}/{level}/Dutch/{name}.md"
         if os.path.exists(dutch_version):
-            lang_link = f"[Nederlandse versie]({WEBSITE_BASE_URL}/{published}/{level}/Dutch/{name}.html){{: .btn .btn-blue }}"
+            lang_link = f"[Nederlandse versie]({WEBSITE_BASE_URL}/{published}/{level}/Dutch/{name}.html){BUTTON}"
             lang_link += "\n\n"
 
     
@@ -123,8 +126,8 @@ def website(f):
     pdf_path = f"EXPORTS/PDF/{published}/{level}/{lang}/{name}.pdf"
     docx_path = f"EXPORTS/DOCX/{published}/{level}/{lang}/{name}.docx"
     
-    pdf_button = f"[Download PDF]({GITHUB_RAW_BASE_URL + pdf_path}){{: .btn .btn-blue }}"
-    docx_button = f"[Download DOCX]({GITHUB_RAW_BASE_URL + docx_path}){{: .btn .btn-blue }}"
+    pdf_button = f"[Download PDF]({GITHUB_RAW_BASE_URL + pdf_path}){BUTTON}"
+    docx_button = f"[Download DOCX]({GITHUB_RAW_BASE_URL + docx_path}){BUTTON}"
     
     website_content = front_matter(published, title, level, lang) + "\n\n" +\
                                 lang_link +\
