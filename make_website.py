@@ -16,7 +16,7 @@ GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/colonial-heritage/resea
 WEBSITE_BASE_URL = "https://research-aids.github.io/"
 
 
-BUTTON = '{: .btn .btn-outline .mr-5}'
+BUTTON = '{: .btn .btn-outline .flex-justify-between}'
 
 # def download_button(published, level, language, name, extension):
     # link_text = dict(pdf="Download PDF", docx="Download DOCX")
