@@ -59,12 +59,12 @@ _(when the website  repo is created)_
 
 **exporting**
  - "Related Aids" table -- ".md" extension instead of ".yml"
+ - there are outdated RA's on the website... (docs might have to be emptied)
   
 
 
 **website content**
  - links should open in new tab (HTML link target="_blank" behaviour)
- - Dutch version is main version (and only item in navigation bar); Dutch version contains link to English version
  - download buttons for PDF and DOCX are hideous
  - make colonial-heritage/research-aids/REAMDE.md landing page of website (i.e. add to research-aids.github.io/docs/ and add front-matter
  - add colonial-heritage/research-aids/handbook.md to website
