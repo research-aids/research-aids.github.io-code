@@ -103,9 +103,6 @@ def get_title(md_lines):
 def process_md_links(md_str):
     jekyll_attrs = '{: target="_blank" }'
     md_link_re = r"\[.+\]\(.+\)"
-
-
-def insert_into_md(md_content, to_insert, insert_index):
     
 
 
