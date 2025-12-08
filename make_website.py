@@ -95,22 +95,26 @@ This is level {level[-1]} of the RAs.
 
 
 
-def get_title(md_content):
-    title_lines = [(l.replace("# ", ""), i) for i, l in enumerate(md_content.splitlines()) if l.strip().startswith("# ")]
+def get_title(md_lines):
+    title_lines = [(l.replace("# ", ""), i) for i, l in enumerate(md_lines) if l.strip().startswith("# ")]
     return title_lines[0]
 
 
 def process_md_links(md_str):
     jekyll_attrs = '{: target="_blank" }'
     md_link_re = r"\[.+\]\(.+\)"
+
+
+def insert_into_md(md_content, to_insert, insert_index):
     
 
 
 def website(f):
     with open(f) as handle:
         md_content = handle.read()
+        md_lines = md_content.splitlines()
 
-    title, title_ind = get_title(md_content)
+    title, title_ind = get_title(md_lines)
         
     md_name, (published, level, lang, name) = get_export_path(f)
 
@@ -135,10 +139,10 @@ def website(f):
     docx_button = f"[Download DOCX]({GITHUB_RAW_BASE_URL + docx_path}){BUTTON}"
     
     website_content = front_matter(published, title, level, lang) + "\n\n" +\
-                        md_content[:title_ind+1] + "\n\n" +\
+                        "\n".join(md_content[:title_ind+1]) + "\n\n" +\
                         lang_link +\
                         pdf_button + "        " + docx_button +\
-                        "\n\n" + md_content[title_ind+1:]
+                        "\n\n" + "\n".join(md_content[title_ind+1:])
 
     with open(md_name, "w") as web_handle:
         print(f"writing website to file: {md_name}", flush=True)
