@@ -16,7 +16,7 @@ GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/colonial-heritage/resea
 WEBSITE_BASE_URL = "https://research-aids.github.io/"
 
 
-BUTTON = '{: .btn .btn-outline target="_blank"}'
+BUTTON = '{: .btn .btn-outline .mr-5}'
 
 # def download_button(published, level, language, name, extension):
     # link_text = dict(pdf="Download PDF", docx="Download DOCX")
@@ -100,6 +100,11 @@ def get_title(md_content):
     return title_lines[0]
 
 
+def process_md_links(md_str):
+    jekyll_attrs = '{: target="_blank" }'
+    md_link_re = r"\[.+\]\(.+\)"
+    
+
 
 def website(f):
     with open(f) as handle:
@@ -119,7 +124,7 @@ def website(f):
         dutch_version = f"{MD_DIR}/{published}/{level}/Dutch/{name}.md"
         if os.path.exists(dutch_version):
             lang_link = f"[Nederlandse versie]({WEBSITE_BASE_URL}/{published}/{level}/Dutch/{name}.html){BUTTON}"
-            lang_link += "\n\n"
+            lang_link += "        "
 
     
     
@@ -130,9 +135,10 @@ def website(f):
     docx_button = f"[Download DOCX]({GITHUB_RAW_BASE_URL + docx_path}){BUTTON}"
     
     website_content = front_matter(published, title, level, lang) + "\n\n" +\
-                                lang_link +\
-                                pdf_button + "        " + docx_button +\
-                                "\n\n" + md_content + "SOMETHING STUPID"
+                        md_content[:title_ind+1] + "\n\n" +\
+                        lang_link +\
+                        pdf_button + "        " + docx_button +\
+                        "\n\n" + md_content[title_ind+1:]
 
     with open(md_name, "w") as web_handle:
         print(f"writing website to file: {md_name}", flush=True)
