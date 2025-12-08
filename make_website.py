@@ -113,7 +113,7 @@ def website(f):
 
     title, title_ind = get_title(md_lines)
         
-    md_name, (publishe ned, level, lang, name) = get_export_path(f)
+    md_name, (published, level, lang, name) = get_export_path(f)
 
     lang_link = ""
     if lang == "Dutch":
