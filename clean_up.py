@@ -14,9 +14,7 @@ import shutil
 #############################################
 
 
-keep = ("published",
-        "review",
-        "handbook.md",
+keep = ("handbook.md",
         "README.md",
         "LICENSE",
         "docs")
