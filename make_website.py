@@ -113,7 +113,7 @@ def website(f):
 
     title, title_ind = get_title(md_lines)
         
-    md_name, (published, level, lang, name) = get_export_path(f)
+    md_name, (publishe ned, level, lang, name) = get_export_path(f)
 
     lang_link = ""
     if lang == "Dutch":
@@ -136,10 +136,10 @@ def website(f):
     docx_button = f"[Download DOCX]({GITHUB_RAW_BASE_URL + docx_path}){BUTTON}"
     
     website_content = front_matter(published, title, level, lang) + "\n\n" +\
-                        "\n".join(md_content[:title_ind+1]) + "\n\n" +\
+                        "\n".join(md_lines[:title_ind+1]) + "\n\n" +\
                         lang_link +\
                         pdf_button + "        " + docx_button +\
-                        "\n\n" + "\n".join(md_content[title_ind+1:])
+                        "\n\n" + "\n".join(md_lines[title_ind+1:])
 
     with open(md_name, "w") as web_handle:
         print(f"writing website to file: {md_name}", flush=True)
