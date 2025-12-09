@@ -142,7 +142,7 @@ def fix_links(md_content):
             # md_content[match.start(3):match.end(3)] = fixed_url
             md_content = md_content[:match.start(3)] + fixed_url + md_content[match.end(3):]
         except ValueError:
-            if ("www." in orig_url) and (not orig_url.endswith(".yml"):
+            if ("www." in orig_url) and (not orig_url.endswith(".yml")):
                 print(f"{orig_url} was not parseable as a relative path!")
             else: raise
     return md_content
