@@ -127,9 +127,9 @@ def relative_path_to_URL(relative_path, md_dir="."):
             return m.group(1)
         raise ValueError(f"{orig_path} couldn't be parsed!")
 
-    relative_path = parse_filename(relative_path)
-    is_published = check_is_published(relative_path, md_dir)
-    return BASE_URL + os.path.join(is_published, relative_path) + ".html"
+    parsed_relative_path = parse_filename(relative_path)
+    is_published = check_is_published(parsed_relative_path, md_dir)
+    return BASE_URL + os.path.join(is_published, parsed_relative_path) + ".html"
 
 
 def fix_links(md_content):
