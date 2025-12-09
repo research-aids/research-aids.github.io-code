@@ -106,7 +106,7 @@ def process_md_links(md_str):
 
 
 def check_is_published(relative_path, md_dir="."):
-    relative_path = relative_path.replace(".yml", ".md")
+    relative_path = relative_path + ".md"
     if os.path.exists(os.path.join(md_dir, "published", relative_path)):
         return "published"
     elif os.path.exists(os.path.join(md_dir, "review", relative_path)):
@@ -127,8 +127,9 @@ def relative_path_to_URL(relative_path, md_dir="."):
             return m.group(1)
         raise ValueError(f"{orig_path} couldn't be parsed!")
 
+    relative_path = parse_filename(relative_path)
     is_published = check_is_published(relative_path, md_dir)
-    return BASE_URL + os.path.join(is_published, parse_filename(relative_path)) + ".html"
+    return BASE_URL + os.path.join(is_published, relative_path) + ".html"
 
 
 def fix_links(md_content):
