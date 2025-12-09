@@ -117,15 +117,16 @@ def check_is_published(relative_path, md_dir="."):
         raise ValueError(f"referenced Research Aid '{relative_path}' doesn't seem to exist!")
 
 
-def parse_filename(orig_path, has_path=False):
-    path_part = r'.+\/' if has_path else ''
-    m = re.search(fr'{path_part}(.*)_[0-9]+\.yml', orig_path)
-    if m:
-        return m.group(1)
-    raise ValueError(f"{orig_path} couldn't be parsed!")
 
 
 def relative_path_to_URL(relative_path, md_dir="."):
+    def parse_filename(orig_path, has_path=False):
+        path_part = r'.+\/' if has_path else ''
+        m = re.search(fr'{path_part}(.*)_[0-9]+\.yml', orig_path)
+        if m:
+            return m.group(1)
+        raise ValueError(f"{orig_path} couldn't be parsed!")
+
     is_published = check_is_published(relative_path, md_dir)
     return BASE_URL + os.path.join(is_published, parse_filename(relative_path)) + ".html"
 
