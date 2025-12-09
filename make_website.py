@@ -132,7 +132,7 @@ def relative_path_to_URL(relative_path, md_dir="."):
 
 
 def fix_links(md_content):
-    pattern = re.compile(r'\[([^][]+)\](\(((?:[^()]+|(?2))+)\))')
+    pattern = re.compile(r'\[([^][]+)\](\(((?:[^()]+)+)\))')
     
     for match in pattern.finditer(md_content):
         print(match.start(), match.end())
