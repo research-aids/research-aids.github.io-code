@@ -129,10 +129,12 @@ def relative_path_to_URL(relative_path, md_dir="."):
 
     parsed_relative_path = parse_filename(relative_path)
     is_published = check_is_published(parsed_relative_path, md_dir)
-    return BASE_URL + os.path.join(is_published, parsed_relative_path) + ".html"
+    return WEBSITE_BASE_URL + os.path.join(is_published, parsed_relative_path) + ".html"
 
 
 def fix_links(md_content):
+    BASE_URL = "https://research-aids.github.io/"
+
     pattern = re.compile(r'\[([^][]+)\](\(((?:[^()]+)+)\))')
     
     for match in pattern.finditer(md_content):
