@@ -103,12 +103,54 @@ def get_title(md_lines):
 def process_md_links(md_str):
     jekyll_attrs = '{: target="_blank" }'
     md_link_re = r"\[.+\]\(.+\)"
+
+
+def check_is_published(relative_path, md_dir="."):
+    relative_path = relative_path.replace(".yml", ".md")
+    if os.path.exists(os.path.join(md_dir, "published", relative_path)):
+        return "published"
+    elif os.path.exists(os.path.join(md_dir, "review", relative_path)):
+        return "review"
+    elif os.path.exists(os.path.join(md_dir, "archive", relative_path)):
+        raise ValueError(f"referenced Research Aid '{relative_path}' is in the archive folder! (And doesn't get exported.)")
+    else:
+        raise ValueError(f"referenced Research Aid '{relative_path}' doesn't seem to exist!")
+
+
+def parse_filename(orig_path, has_path=False):
+    path_part = r'.+\/' if has_path else ''
+    m = re.search(fr'{path_part}(.*)_[0-9]+\.yml', orig_path)
+    if m:
+        return m.group(1)
+    raise ValueError(f"{orig_path} couldn't be parsed!")
+
+
+def relative_path_to_URL(relative_path, md_dir="."):
+    is_published = check_is_published(relative_path, md_dir)
+    return BASE_URL + os.path.join(is_published, parse_filename(relative_path)) + ".html"
+
+
+def fix_links(md_content):
+    pattern = re.compile(r'\[([^][]+)\](\(((?:[^()]+|(?2))+)\))')
     
+    for match in pattern.finditer(md_content):
+        print(match.start(), match.end())
+        description, _, orig_url = match.groups()
+        try:
+            fixed_url = relative_path_to_URL(orig_url, md_dir=MD_DIR)
+            # md_content[match.start(3):match.end(3)] = fixed_url
+            md_content = md_content[:match.start(3)] + fixed_url + md_content[match.end(3):]
+        except ValueError:
+            print(f"{orig_url} was not parseable as a relative path!")
+
+    return md_content
+
 
 
 def website(f):
     with open(f) as handle:
         md_content = handle.read()
+        md_content = fix_links(md_content)
         md_lines = md_content.splitlines()
 
     title, title_ind = get_title(md_lines)
@@ -145,6 +187,10 @@ def website(f):
         print(f"writing website to file: {md_name}", flush=True)
         web_handle.write(website_content)
     # return website_content
+
+
+
+    
 
 
 if __name__ == "__main__":
