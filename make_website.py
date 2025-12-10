@@ -135,10 +135,10 @@ def relative_path_to_URL(relative_path, md_dir="."):
 def fix_links(md_content):
     BASE_URL = "https://research-aids.github.io/"
 
-    pattern = re.compile(r'\[([^][]+)\](\(((?:[^()]+)+)\))')
-    
+    pattern = re.compile(r'\[[^][]+\]\(([^()]+)\)') #(r'\[([^][]+)\](\(((?:[^()]+)+)\))')
+    print(
     for match in pattern.finditer(md_content):
-        print(f"current match = {md_content[match.start():match.end()]}")
+        print(f"current match = {md_content[match.start():match.end()]}", flush=True)
         description, _, orig_url = match.groups()
         if ("http" in orig_url) and (not orig_url.endswith(".yml")):
             continue
