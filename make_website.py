@@ -138,7 +138,7 @@ def fix_links(md_content):
     pattern = re.compile(r'\[([^][]+)\](\(((?:[^()]+)+)\))')
     
     for match in pattern.finditer(md_content):
-        print(match.start(), match.end())
+        print(f"current match = {md_content[match.start():match.end()]}")
         description, _, orig_url = match.groups()
         if ("http" in orig_url) and (not orig_url.endswith(".yml")):
             continue
@@ -155,7 +155,9 @@ def fix_links(md_content):
 def website(f):
     with open(f) as handle:
         md_content = handle.read()
+        print("about to fix links", flush=True)
         md_content = fix_links(md_content)
+        print("done fixing links", flush=True)
         md_lines = md_content.splitlines()
 
     title, title_ind = get_title(md_lines)
