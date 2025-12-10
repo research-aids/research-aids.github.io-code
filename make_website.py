@@ -100,10 +100,6 @@ def get_title(md_lines):
     return title_lines[0]
 
 
-def process_md_links(md_str):
-    jekyll_attrs = '{: target="_blank" }'
-    md_link_re = r"\[.+\]\(.+\)"
-
 
 def check_is_published(relative_path, md_dir="."):
     relative_path = relative_path + ".md"
@@ -117,46 +113,27 @@ def check_is_published(relative_path, md_dir="."):
         raise ValueError(f"referenced Research Aid '{relative_path}' doesn't seem to exist!")
 
 
-
-
-def relative_path_to_URL(relative_path, md_dir="."):
-    def parse_filename(orig_path, has_path=False):
-        path_part = r'.+\/' if has_path else ''
-        m = re.search(fr'{path_part}(.*)_[0-9]+\.yml', orig_path)
-        if m:
-            return m.group(1)
-        raise ValueError(f"{orig_path} couldn't be parsed!")
-
-    parsed_relative_path = parse_filename(relative_path)
-    is_published = check_is_published(parsed_relative_path, md_dir)
-    return WEBSITE_BASE_URL + os.path.join(is_published, parsed_relative_path) + ".html"
-
-
-def fix_links(md_content):
-    BASE_URL = "https://research-aids.github.io/"
-
-    pattern = re.compile(r'\[[^][]+\]\(([^()]+)\)') #(r'\[([^][]+)\](\(((?:[^()]+)+)\))')
-    print("about to re.finditer()")
-    for match in list(pattern.finditer(md_content)):
-        print(f"current match = {md_content[match.start():match.end()]}", flush=True)
-        orig_url = match.groups()[0]
-        if ("http" in orig_url) and (not orig_url.endswith(".yml")):
-            continue
+def fix_related_aids_links(md_content, md_dir="."):
+    related_aid_pattern = re.compile(r'\[[^][]+\](\(([^()]+)\_\d+\.yml\))')
+    related_aids_links = [tuple(match.groups()) for match in related_aid_pattern.finditer(md_content)]
+    
+    for full_link, relative_path in related_aids_links:
         try:
-            fixed_url = relative_path_to_URL(orig_url, md_dir=MD_DIR)
-            # md_content[match.start(3):match.end(3)] = fixed_url
-            md_content = md_content[:match.start(1)] + fixed_url + md_content[match.end(1):]
-        except ValueError:
-            print(f"{orig_url} was not parseable as a relative path!")
+            is_published = check_is_published(relative_path, md_dir=md_dir)
+            new_link = WEBSITE_BASE_URL + os.path.join(is_published, relative_path) + ".html"
+            md_content = md_content.replace(full_link, f"({new_link})")
+        except ValueError as e:
+            print(e, flush=True)
+            md_content = md_content.replace(full_link, "[DOESN'T EXIST]")
+        
     return md_content
-
 
 
 def website(f):
     with open(f) as handle:
         md_content = handle.read()
         print("about to fix links", flush=True)
-        md_content = fix_links(md_content)
+        md_content = fix_links(md_content, MD_DIR)
         print("done fixing links", flush=True)
         md_lines = md_content.splitlines()
 
