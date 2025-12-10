@@ -136,7 +136,7 @@ def fix_links(md_content):
     BASE_URL = "https://research-aids.github.io/"
 
     pattern = re.compile(r'\[[^][]+\]\(([^()]+)\)') #(r'\[([^][]+)\](\(((?:[^()]+)+)\))')
-    print(
+    print("about to re.finditer()")
     for match in pattern.finditer(md_content):
         print(f"current match = {md_content[match.start():match.end()]}", flush=True)
         description, _, orig_url = match.groups()
