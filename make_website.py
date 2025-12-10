@@ -133,7 +133,7 @@ def website(f):
     with open(f) as handle:
         md_content = handle.read()
         print("about to fix links", flush=True)
-        md_content = fix_links(md_content, MD_DIR)
+        md_content = fix_related_aids_links(md_content, MD_DIR)
         print("done fixing links", flush=True)
         md_lines = md_content.splitlines()
 
