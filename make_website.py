@@ -139,7 +139,7 @@ def fix_links(md_content):
     print("about to re.finditer()")
     for match in pattern.finditer(md_content):
         print(f"current match = {md_content[match.start():match.end()]}", flush=True)
-        description, _, orig_url = match.groups()
+        orig_url = match.groups()[0]
         if ("http" in orig_url) and (not orig_url.endswith(".yml")):
             continue
         try:
