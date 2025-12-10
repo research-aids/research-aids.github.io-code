@@ -145,7 +145,7 @@ def fix_links(md_content):
         try:
             fixed_url = relative_path_to_URL(orig_url, md_dir=MD_DIR)
             # md_content[match.start(3):match.end(3)] = fixed_url
-            md_content = md_content[:match.start(3)] + fixed_url + md_content[match.end(3):]
+            md_content = md_content[:match.start(1)] + fixed_url + md_content[match.end(1):]
         except ValueError:
             print(f"{orig_url} was not parseable as a relative path!")
     return md_content
