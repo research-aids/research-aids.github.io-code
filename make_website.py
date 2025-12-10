@@ -140,14 +140,14 @@ def fix_links(md_content):
     for match in pattern.finditer(md_content):
         print(match.start(), match.end())
         description, _, orig_url = match.groups()
+        if ("http" in orig_url) and (not orig_url.endswith(".yml")):
+            continue
         try:
             fixed_url = relative_path_to_URL(orig_url, md_dir=MD_DIR)
             # md_content[match.start(3):match.end(3)] = fixed_url
             md_content = md_content[:match.start(3)] + fixed_url + md_content[match.end(3):]
         except ValueError:
-            if ("http" in orig_url) and (not orig_url.endswith(".yml")):
-                print(f"{orig_url} was not parseable as a relative path!")
-            else: raise
+            print(f"{orig_url} was not parseable as a relative path!")
     return md_content
 
 
